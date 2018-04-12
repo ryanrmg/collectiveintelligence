@@ -1,0 +1,9 @@
+Searching and Ranking
+Search Engine
+	crawling
+	-BeautifulSoup and urllib to index and crawl links
+	-find text elements 
+	
+	fixed set of documents
+Neural Networks
+	learn to associate searches with results based on what links people click after they get a list of search results
