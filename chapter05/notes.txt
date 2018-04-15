@@ -1,0 +1,10 @@
+Optimization
+	-finds the best solution to a problem by trying many different solutions and scoring them to determine their quality
+Cost Function
+	in group travel example:
+	-Price : total cost
+	-Travel time : time everyone spends traveling
+	-Waiting time : time spent waiting for other members and in connections
+	-Departure time : traveling at early or late times
+	-car rental : return the car in timely manor
+
