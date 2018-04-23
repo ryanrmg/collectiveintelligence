@@ -11,7 +11,7 @@ destination = 'LGA'
 flights = {}
 
 for line in file('schedule.txt'):
-    origin, dest, depart, price = line.strip().split(',')
+    origin, dest, depart, arrive, price = line.strip().split(',')
     flights.setdefault((origin,dest),[])
     
     # Add details to the list of possible flights
@@ -91,23 +91,23 @@ def hillclimb(domain,costf):
         # Create list of neighboring solutions
         neighbors=[]
     
-    for j in range(len(domain)):
-      # One away in each direction
-        if sol[j]>domain[j][0]:
-            neighbors.append(sol[0:j]+[sol[j]+1]+sol[j+1:])
-        if sol[j]<domain[j][1]:
-            neighbors.append(sol[0:j]+[sol[j]-1]+sol[j+1:])
+        for j in range(len(domain)):
+            # One away in each direction
+            if sol[j]>domain[j][0]:
+                neighbors.append(sol[0:j]+[sol[j]+1]+sol[j+1:])
+            if sol[j]<domain[j][1]:
+                neighbors.append(sol[0:j]+[sol[j]-1]+sol[j+1:])
 
-    # See what the best solution amongst the neighbors is
-    current=costf(sol)
-    best=current
-    for j in range(len(neighbors)):
-        cost=costf(neighbors[j])
-        if cost<best:
-            best=cost
-            sol=neighbors[j]
+        # See what the best solution amongst the neighbors is
+        current=costf(sol)
+        best=current
+        for j in range(len(neighbors)):
+            cost=costf(neighbors[j])
+            if cost<best:
+                best=cost
+                sol=neighbors[j]
 
-    # If there's no improvement, then we've reached the top
+        # If there's no improvement, then we've reached the top
         if best==current:
             break
     return sol
@@ -177,7 +177,7 @@ def geneticoptimize(domain,costf,popsize=50,step=1, mutprod=0.2,elite=0.2,maxite
     
     # Add mutated and bred forms of the winners
         while len(pop)<popsize:
-            if random.random()<mutprob:
+            if random.random()<mutprod:
 
                 # Mutation
                 c=random.randint(0,topelite)
